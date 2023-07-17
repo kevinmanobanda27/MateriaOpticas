@@ -148,3 +148,29 @@ function downloadPDF6() {
   link.download = "archivo5.pdf"; // Reemplaza con el nombre que desees para el archivo descargado
   link.click();
 }
+
+
+function descargarArchivo() {
+  // Contenido del archivo Word (puedes cambiar el contenido aquí)
+  const contenido = "¡Hola! Este es un archivo Word de ejemplo.";
+
+  // Crear un nuevo Blob con el contenido y el tipo de archivo
+  const blob = new Blob([contenido], { type: "application/msword" });
+
+  // Crear un enlace para descargar el archivo
+  const url = URL.createObjectURL(blob);
+  const enlaceDescarga = document.createElement("a");
+
+  enlaceDescarga.href = url;
+  enlaceDescarga.download = "RESUMENCAPITULOI_2.doc"; // Nombre del archivo Word
+
+  // Agregar el enlace al DOM y simular un clic para descargar el archivo
+  document.body.appendChild(enlaceDescarga);
+  enlaceDescarga.click();
+
+  // Eliminar el enlace después de la descarga
+  document.body.removeChild(enlaceDescarga);
+}
+
+// Asignar el evento click al botón para activar la descarga
+document.getElementById("descargarBoton").addEventListener("click", descargarArchivo);
